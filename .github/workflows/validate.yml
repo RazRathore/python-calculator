@@ -1,29 +1,30 @@
-import unittest
-from calculator import add, subtract, multiply, divide
+name: Calculator Tests
 
-class TestCalculator(unittest.TestCase):
-    def test_add(self):
-        self.assertEqual(add(2, 3), 5)
-        self.assertEqual(add(-1, 1), 0)
-        self.assertEqual(add(0, 0), 0)
-    
-    def test_subtract(self):
-        self.assertEqual(subtract(5, 3), 2)
-        self.assertEqual(subtract(0, 5), -5)
-        self.assertEqual(subtract(-2, -3), 1)
-    
-    def test_multiply(self):
-        self.assertEqual(multiply(2, 3), 6)
-        self.assertEqual(multiply(-1, 1), -1)
-        self.assertEqual(multiply(0, 100), 0)
-    
-    def test_divide(self):
-        self.assertEqual(divide(6, 3), 2)
-        self.assertEqual(divide(-6, 3), -2)
-        self.assertEqual(divide(5, 2), 2.5)
-        
-        with self.assertRaises(ValueError):
-            divide(5, 0)
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
 
-if __name__ == "__main__":
-    unittest.main()
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install pytest
+    
+    - name: Run tests
+      run: pytest test_calculator.py
