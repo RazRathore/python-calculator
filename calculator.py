@@ -31,13 +31,11 @@ def get_operation():
     operations = {
         '1': 'Addition', '2': 'Subtraction', 
         '3': 'Multiplication', '4': 'Division', '5': 'Exit'
-    }
-    
+    } 
     while True:
         print("\nSelect operation:")
         for key, value in operations.items():
             print(f"{key}. {value}")
-        
         choice = input("Enter choice (1/2/3/4/5): ")
         if choice in operations:
             return choice
