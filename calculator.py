@@ -1,3 +1,5 @@
+"""Simple command-line calculator."""
+
 def add(x, y):
     """Add two numbers."""
     return x + y
@@ -26,16 +28,20 @@ def get_number(prompt):
 
 def get_operation():
     """Get a valid operation from user input."""
-    operations = {'1': 'Addition', '2': 'Subtraction', '3': 'Multiplication', '4': 'Division', '5': 'Exit'}
+    operations = {
+        '1': 'Addition', '2': 'Subtraction', 
+        '3': 'Multiplication', '4': 'Division', '5': 'Exit'
+    }
+    
     while True:
         print("\nSelect operation:")
         for key, value in operations.items():
             print(f"{key}. {value}")
+        
         choice = input("Enter choice (1/2/3/4/5): ")
         if choice in operations:
             return choice
-        else:
-            print("Invalid choice. Please select a valid operation.")
+        print("Invalid choice. Please select a valid operation.")
 
 def main():
     """Main function to run the calculator."""
@@ -48,6 +54,9 @@ def main():
 
         num1 = get_number("Enter first number: ")
         num2 = get_number("Enter second number: ")
+
+        operation = ''
+        result = None  # Ensure both variables are defined before use
 
         try:
             if choice == '1':
@@ -62,11 +71,10 @@ def main():
             elif choice == '4':
                 result = divide(num1, num2)
                 operation = '/'
-            
+
             print(f"{num1} {operation} {num2} = {result}")
         except ValueError as e:
             print(e)
 
 if __name__ == "__main__":
     main()
-
