@@ -29,9 +29,9 @@ def get_number(prompt):
 def get_operation():
     """Get a valid operation from user input."""
     operations = {
-        '1': 'Addition', '2': 'Subtraction', 
+        '1': 'Addition', '2': 'Subtraction',
         '3': 'Multiplication', '4': 'Division', '5': 'Exit'
-    } 
+    }
     while True:
         print("\nSelect operation:")
         for key, value in operations.items():
